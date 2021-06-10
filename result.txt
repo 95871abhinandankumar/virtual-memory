@@ -1,0 +1,42 @@
+                                                        *****************************************************************
+All the graph with explanation placed in result.docs file
+and in this file i have explined how demand paging work.
+how random one behave like fifo .
+how custom(second chance algorithm behave like LRU)
+
+and conclusion part. 
+                                                       ******************************************************************
+
+Demand Paging
+According to the concept of Virtual Memory, in order to execute some process, only a part of the process needs to 
+be present in the main memory which means that only a few pages will only be present in the main memory at any
+ time.However, deciding, which pages need to be kept in the main memory and which need to be kept in the secondary 
+memory, is going to be difficult because we cannot say in advance that a process will require a particular page at particular
+ time.Therefore, to overcome this problem, there is a concept called Demand Paging is introduced. It suggests keeping all 
+pages of the frames in the secondary memory until they are required.
+
+•Although FIFO is simple and easy, it is not always optimal, or even efficient.
+•An interesting effect that can occur with FIFO is Belady's anomaly, in which increasing the number of frames
+ available can actually increase the number of page faults that occur!
+   
+The second chance algorithm is essentially a FIFO, except the reference bit is used to give pages a second chance at staying in the page table.
+•When a page must be replaced, the page table is scanned in a FIFO ( circular queue ) manner.
+•If a page is found with its reference bit not set, then that page is selected as the next victim.
+•If, however, the next page in the FIFO does have its reference bit set, then it is given a second chance:
+              ->The reference bit is cleared, and the FIFO search continues.
+              ->If some other page is found that did not have its reference bit set, 
+	then that page will be selected as the victim, and this page ( the one being given the 
+	second chance ) will be allowed to stay in the page table.
+              ->If , however, there are no other pages that do not have their reference bit set, 
+	then this page will be selected as the victim when the FIFO search circles
+	 back around to this page on the second pass.
+Conclusion –
+Various factors substantially affect the number of page faults, such as reference string length and the number of free page frames available
+. Anomalies also occurs due to the small cache size as well as the reckless rate of change of the contents of cache. Also, the situation
+ of fixed number of page faults even after increasing the number of frames can also be seen as an anomaly. Often algorithms like
+Random page replacement algorithm are also susceptible to Belady’s Anomaly, because it may 
+behave like first in first out (FIFO) page replacement algorithm.
+ Custom (second chance algoritm) is approximation of LRU . It is also susceptible 
+to Belady’s anomaly but it as number of frame increases it behave like LRU .
+Hence, second chance algorithm is some how better than rand and fifo algorithm
+
